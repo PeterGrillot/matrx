@@ -35,14 +35,14 @@ class Matrix extends Component {
 		this.props.randomizeEntries(mix(this.props.entries))
 		console.log(this.props.entries)
 	}
-	selectEntry(entryNum){
-		console.log(entryNum)
+	selectEntry(event){
+		console.log(event.target.dataset.num)
 	}
 	render() {
 		return (
 			<div className="Matrix">
 				{this.props.entries.map((item, index)=>{
-					return <button onClick="selectEntry(item)" key={index}>{item}</button>
+					return <button onClick={this.selectEntry} data-num={item} key={index}>{item}</button>
 				})}
 				<button onClick={this.buildMatrix}>RANDO</button>
 			</div>
