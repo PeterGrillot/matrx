@@ -9,8 +9,6 @@ export const updateScore = (score, bonus) => {
 	};
 }
 
-
-
 export const randomizeEntries = (entries) => {
 	return {
 		type: RANDOMIZE_ENTRIES,

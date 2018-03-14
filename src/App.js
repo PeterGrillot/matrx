@@ -19,6 +19,7 @@ const matrix = {
     [1,0],[1,1],[1,2],
     [2,0],[2,1],[2,2],
   ],
+  ts: 0,
   score: 0
 }
 
@@ -32,8 +33,8 @@ class App extends Component {
           <header className="App-header">
             <h1 className="App-title">Matrx</h1>
           </header>
-            <Matrix />
-            <Scoreboard />
+          <Matrix />
+          <Scoreboard />
         </div>
       </Provider>
     );
