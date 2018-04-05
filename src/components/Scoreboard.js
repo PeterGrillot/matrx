@@ -1,29 +1,28 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 
 // Needed to get Store!
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../store/actions';
 
+const ScoreArea = styled.section`
+	display: flex;
+	padding: 1rem;
+	background: rgba(255,255,255,0.3);
+	width: 30rem;
+	margin: auto;
+`
+
 class Scoreboard extends Component {
 
 	constructor(props) {
 		super(props);
-		this.updateScore = this.updateScore.bind(this)
-		// const { dispatch } = props;
-		// this.boundActionCreators = bindActionCreators(Actions, dispatch)
-		// let action = Actions.updateScore('About');
-		// dispatch(action);
 	}
-	updateScore(){
-		// const { dispatch } = this.props;
-		this.props.updateScore(this.props.score, 100);
-	}
+
 	render() {
 		return (
-			<div className="Scoreboard">
-				<button onClick={this.updateScore}>Hey: {this.props.score}</button>
-			</div>
+			<ScoreArea className="Scoreboard">Score: {this.props.score}</ScoreArea>
 		);
 	}
 }

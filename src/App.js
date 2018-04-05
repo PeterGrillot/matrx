@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import Matrix from './components/Matrix';
 import Scoreboard from './components/Scoreboard';
+import styled from 'styled-components';
 
-import './App.css';
+// Static
+import './static/styles.css';
+import img from './static/graphy-dark.png'
 
 // Redux
 import { Provider } from 'react-redux';
@@ -24,18 +27,23 @@ const matrix = {
 }
 
 let store = createStore(reducer, matrix)
-
+const Main = styled.main`
+  padding: 4em;
+  background-size: 3rem;
+  background: turquoise;
+  background-image: url(${img});
+`;
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
+        <Main className="App">
           <header className="App-header">
             <h1 className="App-title">Matrx</h1>
           </header>
           <Matrix />
           <Scoreboard />
-        </div>
+        </Main>
       </Provider>
     );
   }
