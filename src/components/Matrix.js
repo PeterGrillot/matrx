@@ -12,6 +12,7 @@ const MatrixArea = styled.section`
   width: 30rem;
   margin: auto;
 `;
+
 const EntryButton = styled.button`
   flex-basis: 10rem;
   height: 10rem;
@@ -40,23 +41,15 @@ const mix = (array) => {
 };
 
 class Matrix extends Component {
-  constructor(props) {
-    super(props);
-    this.handleScore = this.handleScore.bind(this);
-    this.buildMatrix = this.buildMatrix.bind(this);
-    this.selectEntry = this.selectEntry.bind(this);
-    this.buildMatrix();
-  }
-
-  handleScore(newScore) {
+  handleScore = (newScore) => {
     this.props.updateScore(newScore);
   }
 
-  buildMatrix() {
+  buildMatrix = () => {
     this.props.randomizeEntries(mix(this.props.entries));
   }
 
-  resetMatrix() {
+  resetMatrix = () => {
     [...document.querySelectorAll('.button')].map((button) => {
       return button.removeAttribute('disabled');
     });
@@ -65,7 +58,7 @@ class Matrix extends Component {
     this.buildMatrix();
   }
 
-  selectEntry(event) {
+  selectEntry = (event) => {
     event.currentTarget.setAttribute('disabled', true);
     tempCount = ++tempCount;
     tempScore = tempScore + parseInt(event.target.dataset.num, 10);
@@ -87,7 +80,7 @@ class Matrix extends Component {
   }
 }
 
-// buildMatrix 
+// buildMatrix
 const mapStateToProps = (state) => {
   return {
     entries: state.entries,
