@@ -18,6 +18,8 @@
   },
   "devDependencies": {
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "eslint-plugin-jsx-control-statements": "^2.2.1"
+    "eslint-plugin-jsx-control-statements": "^2.2.1",
+    "lodash": "^4.17.10",
+    "redux-logger": "^3.0.6"
   }
 }

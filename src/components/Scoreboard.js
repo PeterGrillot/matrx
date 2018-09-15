@@ -11,15 +11,11 @@ const ScoreArea = styled.section`
 `;
 
 class Scoreboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: props.count,
-      score: props.score,
-      round: props.round,
-      bonus: props.bonus
-    };
-  }
+  state = {
+    count: this.props.count,
+    score: this.props.score,
+    round: this.props.round
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState({ ...nextProps });
@@ -29,8 +25,7 @@ class Scoreboard extends React.Component {
     const {
       count,
       score,
-      round,
-      bonus
+      round
     } = this.state;
 
     return (
@@ -38,7 +33,6 @@ class Scoreboard extends React.Component {
         <span>Count: {count}</span>
         <span>Score: {score}</span>
         <span>Round: {round}</span>
-        <span>Bonus: {bonus}</span>
       </ScoreArea>
     );
   }
@@ -48,8 +42,7 @@ function mapStateToProps(state) {
   return {
     count: state.count,
     score: state.score,
-    round: state.round,
-    bonus: state.bonus
+    round: state.round
   };
 }
 

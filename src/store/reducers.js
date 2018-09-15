@@ -1,18 +1,13 @@
-import { UPDATE_COUNT, UPDATE_SCORE, UPDATE_ROUND, UPDATE_BONUS, RANDOMIZE_ENTRIES } from './actions';
-
-export const DEFAULT_STATE = {
-  count: 0,
-  score: 0,
-  round: 0,
-  bonus: 0
-};
+import { UPDATE_COUNT, UPDATE_SCORE, UPDATE_ROUND, RANDOMIZE_ENTRIES } from './actions';
+import { DEFAULT_STATE } from '../util/models';
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
   case UPDATE_COUNT: {
+    const newCount = action.count === 'reset' ? 0 : state.count + action.count;
     return {
       ...state,
-      count: ++action.count
+      count: newCount
     };
   }
   case UPDATE_SCORE: {
@@ -22,15 +17,10 @@ export default (state = DEFAULT_STATE, action) => {
     };
   }
   case UPDATE_ROUND: {
+    const newRound = action.round === 'reset' ? 0 : --state.round;
     return {
       ...state,
-      round: ++action.round
-    };
-  }
-  case UPDATE_BONUS: {
-    return {
-      ...state,
-      bonus: action.bonus
+      round: newRound
     };
   }
   case RANDOMIZE_ENTRIES: {

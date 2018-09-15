@@ -23,6 +23,8 @@ button{
   font-size: 3rem;
   border: none;
   padding: 2rem;
+  flex-basis: 10rem;
+  height: 10rem;
   color: var(--white);
 }
 button[disabled]{

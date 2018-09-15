@@ -9,9 +9,11 @@ import img from './static/graphy-dark.png';
 
 // Redux
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer, { DEFAULT_STATE } from './store/reducers';
-
+import { applyMiddleware, createStore } from 'redux';
+import reducer from './store/reducers';
+import { DEFAULT_STATE } from './util/models';
+// Logger with default options
+import logger from 'redux-logger';
 // Create Store
 const matrix = {
   entries: [
@@ -25,7 +27,7 @@ const matrix = {
   ...DEFAULT_STATE
 };
 
-const store = createStore(reducer, matrix);
+const store = createStore(reducer, matrix, applyMiddleware(logger));
 const Main = styled.main`
   padding: 4em;
   background-size: 3rem;
