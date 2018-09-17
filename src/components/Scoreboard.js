@@ -1,37 +1,49 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-
-// Needed to get Store!
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../store/actions';
 
 const ScoreArea = styled.section`
-	display: flex;
-	padding: 1rem;
-	background: rgba(255,255,255,0.3);
-	width: 30rem;
-	margin: auto;
-`
+  display: flex;
+  padding: 1rem;
+  background: rgba(255,255,255,0.3);
+  width: 30rem;
+  margin: auto;
+`;
 
-class Scoreboard extends Component {
+class Scoreboard extends React.Component {
+  state = {
+    count: this.props.count,
+    score: this.props.score,
+    round: this.props.round
+  };
 
-	constructor(props) {
-		super(props);
-	}
+  componentWillReceiveProps(nextProps) {
+    this.setState({ ...nextProps });
+  }
 
-	render() {
-		return (
-			<ScoreArea className="Scoreboard">Score: {this.props.score}</ScoreArea>
-		);
-	}
+  render() {
+    const {
+      count,
+      score,
+      round
+    } = this.state;
+
+    return (
+      <ScoreArea className="Scoreboard">
+        <span>Count: {count}</span>
+        <span>Score: {score}</span>
+        <span>Round: {round}</span>
+      </ScoreArea>
+    );
+  }
 }
 
 function mapStateToProps(state) {
-  return { score: state.score }
-}
-function mapDispachToProps(dispatch) {
-    return bindActionCreators(Actions, dispatch);
+  return {
+    count: state.count,
+    score: state.score,
+    round: state.round
+  };
 }
 
-export default connect(mapStateToProps, mapDispachToProps)(Scoreboard);
+export default connect(mapStateToProps)(Scoreboard);
