@@ -1,6 +1,7 @@
 :root{
-  --purple: #955ded;
+  --purple: #9100ff;
   --white: #F5F5F5;
+  --gradient: linear-gradient(45deg, #f16c6c, #9100ff);
 }
 *{
   box-sizing: border-box;
@@ -12,23 +13,24 @@ html,body{
 }
 body{
   font-size: 2rem;
-  color: var(--white);
+  /*color: var(--white);*/
 }
 
 .App {
   text-align: center;
 }
 button{
-  background: var(--purple);
+  /*background: var(--gradient);*/
   font-size: 3rem;
   border: none;
   padding: 2rem;
   flex-basis: 10rem;
   height: 10rem;
-  color: var(--white);
+  /*color: var(--white);*/
 }
 button[disabled]{
-  opacity: 0.6;
+  opacity: 0.8;
+  /*background: linear-gradient(-45deg, #c16c6c, #5100ff);*/
 }
 .App-title {
   font-size: 1.5em;

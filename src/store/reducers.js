@@ -1,11 +1,16 @@
-import { UPDATE_COUNT, UPDATE_SCORE, UPDATE_ROUND, RANDOMIZE_ENTRIES } from './actions';
+import {
+  UPDATE_COUNT,
+  UPDATE_SCORE,
+  DECREMENT_ROUND,
+  RANDOMIZE_ENTRIES,
+  RESET_STORE
+} from './actions';
 import { DEFAULT_STATE } from '../util/models';
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
   case UPDATE_COUNT: {
     const newCount = action.count === 0 ? 0 : state.count + action.count;
-    console.log(newCount)
     return {
       ...state,
       count: newCount
@@ -17,8 +22,8 @@ export default (state = DEFAULT_STATE, action) => {
       score: action.score + state.score
     };
   }
-  case UPDATE_ROUND: {
-    const newRound = action.round === 'reset' ? 0 : --state.round;
+  case DECREMENT_ROUND: {
+    const newRound = !action.round ? DEFAULT_STATE.round : --state.round;
     return {
       ...state,
       round: newRound
@@ -29,6 +34,9 @@ export default (state = DEFAULT_STATE, action) => {
     return Object.assign({}, state, {
       entries: randomArray
     });
+  }
+  case RESET_STORE: {
+    return DEFAULT_STATE;
   }
   default: {
     return state;
