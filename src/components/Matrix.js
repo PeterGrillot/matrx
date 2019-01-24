@@ -22,6 +22,8 @@ const MatrixArea = styled.section`
   margin: auto;
 `;
 
+const buttonElements = () => [...document.querySelectorAll('.button')];
+
 class Matrix extends Component {
   state = {
     score: DEFAULT_STATE.score,
@@ -39,12 +41,12 @@ class Matrix extends Component {
   }
 
   buildMatrix = () => {
-    this.props.updateCount('reset');
+    this.props.updateCount(0);
     this.props.randomizeEntries(mix(this.props.entries));
   }
 
   resetMatrix = () => {
-    [...document.querySelectorAll('.button')].map((button) => {
+    buttonElements().map((button) => {
       return button.removeAttribute('disabled');
     });
     this.props.updateRound();
@@ -56,8 +58,16 @@ class Matrix extends Component {
     return VECTOR[location];
   }
 
+  getCurrentVector = (vectorArray) => {
+    const top = `${integer(vectorArray[0]) - 1},${integer(vectorArray[1])}`;
+    const bottom = `${integer(vectorArray[0]) + 1},${integer(vectorArray[1])}`;
+    const left = `${integer(vectorArray[0])},${integer(vectorArray[1]) - 1}`;
+    const right = `${integer(vectorArray[0])},${integer(vectorArray[1]) + 1}`;
+    return [top, bottom, left, right];
+  }
+
   resetButtons = () => {
-    [...document.querySelectorAll('.button')].map((button) => {
+    buttonElements().map((button) => {
       return button.setAttribute('disabled', true);
     });
   }
@@ -67,25 +77,34 @@ class Matrix extends Component {
     // PETE: NEEDS  MESSAGE
     // eslint-disable-next-line
     alert(`Game Over. You scored ${score}`);
-    this.props.updateRound('reset');
+    this.props.updateRound();
     this.resetMatrix();
   }
 
+  getButtonElement = (buttonId) => {
+    return document.querySelector(`button[data-vector="${buttonId}"]`);
+  }
+
   selectEntry = (event) => {
+    const { round } = this.props;
+    if (round === 0) {
+      this.gameOver();
+      return;
+    }
     const target = event.currentTarget;
     const vector = target.dataset.vector.split(',');
-    const top = `${integer(vector[0]) - 1},${integer(vector[1])}`;
-    const bottom = `${integer(vector[0]) + 1},${integer(vector[1])}`;
-    const left = `${integer(vector[0])},${integer(vector[1]) - 1}`;
-    const right = `${integer(vector[0])},${integer(vector[1]) + 1}`;
-    const enableArray = [top, bottom, left, right];
+    // enable certain buttons
+    const enableArray = this.getCurrentVector(vector);
+
+    // handle button toggle
     this.setState({
       selectedArray: [...this.state.selectedArray, target.dataset.vector]
     }, () => {
       const enabledWithoutSelected = _.without(enableArray, ...this.state.selectedArray);
       enabledWithoutSelected.map((item) => {
-        if (document.querySelector(`button[data-vector="${item}"]`)) {
-          return document.querySelector(`button[data-vector="${item}"]`).removeAttribute('disabled');
+        const buttonElement = this.getButtonElement(item);
+        if (buttonElement) {
+          return buttonElement.removeAttribute('disabled');
         }
         return false;
       });

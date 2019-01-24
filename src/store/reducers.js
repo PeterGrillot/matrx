@@ -4,7 +4,8 @@ import { DEFAULT_STATE } from '../util/models';
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
   case UPDATE_COUNT: {
-    const newCount = action.count === 'reset' ? 0 : state.count + action.count;
+    const newCount = action.count === 0 ? 0 : state.count + action.count;
+    console.log(newCount)
     return {
       ...state,
       count: newCount
