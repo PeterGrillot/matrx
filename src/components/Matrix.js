@@ -10,11 +10,11 @@ import {
   updateScore,
   decrementRound,
   randomizeEntries
-} from '../store/actions';
+} from 'store/actions';
 
-import { integer, mix } from '../util/math';
-import { getVector, getCurrentVector } from '../util/vector';
-import { DEFAULT_STATE } from '../util/models';
+import { integer, mix } from 'util/math';
+import { getVector, getCurrentVector } from 'util/vector';
+import { DEFAULT_STATE } from 'util/models';
 
 const MatrixArea = styled.section`
   display: flex;
@@ -58,7 +58,6 @@ class Matrix extends Component {
     buttonElements().map((button) => {
       return button.removeAttribute('disabled');
     });
-    // console.log('before', this.props.round);
     this.decrementRound(true).then(() => {
       this.buildMatrix();
       this.setState({ ...DEFAULT_STATE, selectedArray: [] });

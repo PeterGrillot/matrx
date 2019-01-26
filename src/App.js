@@ -31,7 +31,6 @@ const store = createStore(reducer, matrix, applyMiddleware(logger));
 const Main = styled.main`
   padding: 4em;
   background-size: 10vw;
-  /*background: turquoise;*/
   background-image: url(${img});
 `;
 class App extends Component {
