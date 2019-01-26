@@ -39,31 +39,32 @@ class Matrix extends Component {
 
   componentDidMount = () => {
     this.props.randomizeEntries(mix(this.props.entries));
-  }
+  };
 
   handleScore = (newScore) => {
     this.props.updateScore(newScore);
-  }
+  };
 
   buildMatrix = () => {
-    this.props.updateCount(0);
+    this.props.updateCount(-1);
     this.props.randomizeEntries(mix(this.props.entries));
-  }
+  };
 
   resetMatrix = () => {
     buttonElements().map((button) => {
       return button.removeAttribute('disabled');
     });
+    console.log(this.props.round, this.props.count === 0 ? 'reset' : 'keepgoing');
     this.props.decrementRound(true);
     this.buildMatrix();
     this.setState({ ...DEFAULT_STATE, selectedArray: [] });
-  }
+  };
 
   resetButtons = () => {
     buttonElements().map((button) => {
       return button.setAttribute('disabled', true);
     });
-  }
+  };
 
   gameOver = () => {
     const { score } = this.props;
@@ -71,11 +72,11 @@ class Matrix extends Component {
     // eslint-disable-next-line
     alert(`Game Over. You scored ${score}`);
     this.props.decrementRound(false);
-  }
+  };
 
   getButtonElement = (buttonId) => {
     return document.querySelector(`button[data-vector="${buttonId}"]`);
-  }
+  };
 
   selectEntry = (event) => {
     const target = event.currentTarget;
@@ -114,7 +115,7 @@ class Matrix extends Component {
         this.resetMatrix();
       }
     });
-  }
+  };
 
   render() {
     return (
