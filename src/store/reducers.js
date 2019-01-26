@@ -6,20 +6,20 @@ import {
   RESET_STORE
 } from './actions';
 import { DEFAULT_STATE } from '../util/models';
+import { clamp } from '../util/math';
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
   case UPDATE_COUNT: {
-    const newCount = action.count === -1 ? 0 : state.count + action.count;
     return {
       ...state,
-      count: newCount
+      count: clamp(action.count, state.count)
     };
   }
   case UPDATE_SCORE: {
     return {
       ...state,
-      score: action.score + state.score
+      score: clamp(action.score, state.score)
     };
   }
   case DECREMENT_ROUND: {

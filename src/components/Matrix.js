@@ -50,14 +50,23 @@ class Matrix extends Component {
     this.props.randomizeEntries(mix(this.props.entries));
   };
 
+  async decrementRound(toggle) {
+    await this.props.decrementRound(toggle);
+  }
+
   resetMatrix = () => {
     buttonElements().map((button) => {
       return button.removeAttribute('disabled');
     });
-    console.log(this.props.round, this.props.count === 0 ? 'reset' : 'keepgoing');
-    this.props.decrementRound(true);
-    this.buildMatrix();
-    this.setState({ ...DEFAULT_STATE, selectedArray: [] });
+    // console.log('before', this.props.round);
+    this.decrementRound(true).then(() => {
+      this.buildMatrix();
+      this.setState({ ...DEFAULT_STATE, selectedArray: [] });
+      if (this.props.round === 0) {
+        this.gameOver();
+        return false;
+      }
+    });
   };
 
   resetButtons = () => {
@@ -70,7 +79,8 @@ class Matrix extends Component {
     const { score } = this.props;
     // PETE: NEEDS  MESSAGE
     // eslint-disable-next-line
-    alert(`Game Over. You scored ${score}`);
+    console.log(`Game Over. You scored ${score}`);
+    this.props.updateScore(-1);
     this.props.decrementRound(false);
   };
 
