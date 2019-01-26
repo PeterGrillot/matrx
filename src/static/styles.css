@@ -1,25 +1,50 @@
-:root{
-  --purple: #955ded;
+:root {
+  /*Colors*/
+  --green: #74fd93;
+  --red: #f16c6c;
+  --purple: #9100ff;
   --white: #F5F5F5;
+  --gradient: linear-gradient(45deg, #f16c6c, #9100ff);
+
+  /*Typography*/
+  --font: 'Major Mono Display', monospace;
 }
-*{
+
+* {
   box-sizing: border-box;
 }
-html,body{
+
+html,
+body {
   padding: 0;
   margin: 0;
   font-size: 10px;
 }
-body{
+
+body {
   font-size: 2rem;
-  color: var(--white);
+  font-family: var(--font);
 }
 
 .App {
   text-align: center;
+  height: 100vh;
+  transition: 1s;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
 }
-button{
-  background: var(--purple);
+
+.App--pass {
+  animation-name: pass;
+}
+
+.App--fail {
+  animation-name: fail;
+}
+
+button {
+  background: var(--gradient);
+  font-family: var(--font);
   font-size: 3rem;
   border: none;
   padding: 2rem;
@@ -27,18 +52,37 @@ button{
   height: 10rem;
   color: var(--white);
 }
-button[disabled]{
-  opacity: 0.6;
-}
-.App-title {
-  font-size: 1.5em;
+
+button[disabled] {
+  opacity: 0.8;
+  background: linear-gradient(-45deg, #c16c6c, #5100ff);
 }
 
-.App-intro {
-  font-size: large;
+h1 {
+  font-size: 2em;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+p {
+  font-size: 1em;
+}
+
+/* The animation code */
+@keyframes pass {
+  0% {
+    background-color: var(--green);
+  }
+
+  100% {
+    background-color: white;
+  }
+}
+
+@keyframes fail {
+  0% {
+    background-color: var(--red)
+  }
+
+  100%% {
+    background-color: white
+  }
 }

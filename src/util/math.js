@@ -18,3 +18,7 @@ export const mix = (array) => {
   }
   return array;
 };
+
+export const clamp = (x, y) => {
+  return x === -1 ? 0 : y + x;
+};

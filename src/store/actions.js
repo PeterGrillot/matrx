@@ -1,7 +1,8 @@
 export const UPDATE_COUNT = 'UPDATE_COUNT';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
-export const UPDATE_ROUND = 'UPDATE_ROUND';
+export const DECREMENT_ROUND = 'DECREMENT_ROUND';
 export const RANDOMIZE_ENTRIES = 'RANDOMIZE_ENTRIES';
+export const RESET_STORE = 'RESET_STORE';
 
 export const updateCount = (count) => {
   return {
@@ -17,9 +18,9 @@ export const updateScore = (score) => {
   };
 };
 
-export const updateRound = (round) => {
+export const decrementRound = (round) => {
   return {
-    type: UPDATE_ROUND,
+    type: DECREMENT_ROUND,
     round
   };
 };
@@ -29,4 +30,8 @@ export const randomizeEntries = (entries) => {
     type: RANDOMIZE_ENTRIES,
     entries
   };
+};
+
+export const resetStore = () => {
+  return { type: RESET_STORE };
 };
