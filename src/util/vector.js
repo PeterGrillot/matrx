@@ -1,5 +1,5 @@
-import { integer } from '../util/math';
-import { VECTOR } from '../util/models';
+import { integer } from 'util/math';
+import { VECTOR } from 'util/models';
 
 export function getVector(location) {
   return VECTOR[location];
