@@ -13,13 +13,16 @@ import {
 } from 'store/actions';
 
 import { integer, mix } from 'util/math';
-import { getVector, getCurrentVector } from 'util/vector';
+import { getCurrentVector } from 'util/vector';
 import { DEFAULT_STATE } from 'util/models';
+
+import { Button } from 'components/ui/Button';
 
 const MatrixArea = styled.section`
   display: flex;
   flex-wrap: wrap;
   width: 30rem;
+  height: 30rem;
   margin: auto;
 `;
 
@@ -52,6 +55,10 @@ class Matrix extends Component {
 
   async decrementRound(toggle) {
     await this.props.decrementRound(toggle);
+  }
+
+  getVector(location: number) {
+    return this.props.matrix[location];
   }
 
   resetMatrix = () => {
@@ -131,15 +138,15 @@ class Matrix extends Component {
       <MatrixArea className="Matrix">
         {this.props.entries.map((item, index) => {
           return (
-            <button
+            <Button
               className="button"
-              onClick={this.selectEntry}
-              data-num={item}
-              data-vector={getVector(index)}
+              handleClick={this.selectEntry}
+              number={item}
+              width={this.props.size}
+              vector={this.getVector(index)}
               key={index}
-            >
-              {item}
-            </button>
+              label={item}
+            />
           );
         })}
       </MatrixArea>
@@ -150,6 +157,8 @@ class Matrix extends Component {
 const mapStateToProps = (state) => {
   return {
     entries: state.entries,
+    matrix: state.matrix,
+    size: state.size,
     score: state.score,
     round: state.round
   };

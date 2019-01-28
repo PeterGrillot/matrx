@@ -3,10 +3,12 @@ import {
   UPDATE_SCORE,
   DECREMENT_ROUND,
   RANDOMIZE_ENTRIES,
-  RESET_STORE
+  RESET_STORE,
+  UPDATE_MATRIX
 } from './actions';
 import { DEFAULT_STATE } from 'util/models';
 import { clamp } from 'util/math';
+import { createMatrixStore } from 'util/vector';
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
@@ -37,6 +39,13 @@ export default (state = DEFAULT_STATE, action) => {
   }
   case RESET_STORE: {
     return DEFAULT_STATE;
+  }
+  case UPDATE_MATRIX: {
+    const newStore = createMatrixStore(action.newSize);
+    return {
+      ...DEFAULT_STATE,
+      ...newStore
+    };
   }
   default: {
     return state;

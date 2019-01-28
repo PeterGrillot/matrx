@@ -4,6 +4,7 @@
   --red: #f16c6c;
   --purple: #9100ff;
   --white: #F5F5F5;
+  --text:  #2c3e50;
   --gradient: linear-gradient(45deg, #f16c6c, #9100ff);
 
   /*Typography*/
@@ -24,6 +25,7 @@ body {
 body {
   font-size: 2rem;
   font-family: var(--font);
+  color: var(--text);
 }
 
 .App {
@@ -45,11 +47,8 @@ body {
 button {
   background: var(--gradient);
   font-family: var(--font);
-  font-size: 3rem;
+  font-size: 2.6rem;
   border: none;
-  padding: 2rem;
-  flex-basis: 10rem;
-  height: 10rem;
   color: var(--white);
 }
 
@@ -60,6 +59,8 @@ button[disabled] {
 
 h1 {
   font-size: 2em;
+  margin: 0;
+  padding: .4em 0;
 }
 
 p {

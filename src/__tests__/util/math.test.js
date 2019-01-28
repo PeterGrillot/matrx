@@ -1,9 +1,12 @@
-import _ from 'lodash';
 import {
-  interger,
+  integer,
   mix,
   clamp
 } from 'util/math';
+
+test('integer = fn() => returns a number with redix 10, noting to see here', () => {
+  expect(integer(2)).toEqual(2);
+});
 
 describe('clamp = fn(): Adds 2 value, but returns 0 if reset with -1', () => {
   test('Adds 1 + 2 to equal 3', () => {

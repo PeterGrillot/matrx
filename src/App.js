@@ -1,35 +1,25 @@
 import React, { Component } from 'react';
-import Matrix from './components/Matrix';
-import Scoreboard from './components/Scoreboard';
+import Matrix from 'components/Matrix';
+import Scoreboard from 'components/Scoreboard';
+import Toolbar from 'components/Toolbar';
 import styled from 'styled-components';
 
 // Static
-import './static/styles.css';
+import './static/styles/main.css';
 import img from './static/morocco.png';
 
 // Redux
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import reducer from './store/reducers';
-import { DEFAULT_STATE } from './util/models';
+import { createMatrixStore } from './util/vector';
 // Logger with default options
 import logger from 'redux-logger';
-// Create Store
-const matrix = {
-  entries: [
-    0, 1, 2, 3, 4, 5, 6, 7, 8
-  ],
-  vector: [
-    [0, 0], [0, 1], [0, 2],
-    [1, 0], [1, 1], [1, 2],
-    [2, 0], [2, 1], [2, 2]
-  ],
-  ...DEFAULT_STATE
-};
+const newMatrixSize = 3;
+const newMatrixStore = createMatrixStore(newMatrixSize);
 
-const store = createStore(reducer, matrix, applyMiddleware(logger));
+const store = createStore(reducer, newMatrixStore, applyMiddleware(logger));
 const Main = styled.main`
-  padding: 4em;
   background-size: 10vw;
   background-image: url(${img});
 `;
@@ -43,6 +33,7 @@ class App extends Component {
           </header>
           <Matrix />
           <Scoreboard />
+          <Toolbar />
         </Main>
       </Provider>
     );

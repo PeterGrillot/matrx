@@ -3,6 +3,7 @@ export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const DECREMENT_ROUND = 'DECREMENT_ROUND';
 export const RANDOMIZE_ENTRIES = 'RANDOMIZE_ENTRIES';
 export const RESET_STORE = 'RESET_STORE';
+export const UPDATE_MATRIX = 'UPDATE_MATRIX';
 
 export const updateCount = (count) => {
   return {
@@ -35,3 +36,11 @@ export const randomizeEntries = (entries) => {
 export const resetStore = () => {
   return { type: RESET_STORE };
 };
+
+export const updateMatrix = (newSize) => {
+  return {
+    type: UPDATE_MATRIX,
+    newSize
+  };
+};
+
