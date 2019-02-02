@@ -1,0 +1,10 @@
+.Matrix {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80vw;
+  height: 80vw;
+  max-width: 60rem;
+  max-height: 60rem;
+  margin: auto;
+  background: var(--red)
+}

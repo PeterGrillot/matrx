@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import 'static/styles/select.css';
+import './index.css';
 
 type Props = {
   options: Array<{

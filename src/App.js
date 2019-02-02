@@ -1,43 +1,38 @@
 import React, { Component } from 'react';
-import Matrix from 'components/Matrix';
-import Scoreboard from 'components/Scoreboard';
-import Toolbar from 'components/Toolbar';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+import Matrix from 'components/Matrix/index.js';
+import Scoreboard from 'components/Scoreboard/index.js';
+import Toolbar from 'components/Toolbar/index.js';
 
 // Static
-import './static/styles/main.css';
+import './static/style.css';
 import img from './static/morocco.png';
 
-// Redux
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import reducer from './store/reducers';
-import { createMatrixStore } from './util/vector';
-// Logger with default options
-import logger from 'redux-logger';
-const newMatrixSize = 3;
-const newMatrixStore = createMatrixStore(newMatrixSize);
-
-const store = createStore(reducer, newMatrixStore, applyMiddleware(logger));
-const Main = styled.main`
-  background-size: 10vw;
-  background-image: url(${img});
-`;
 class App extends Component {
   render() {
+    const { open } = this.props;
     return (
-      <Provider store={store}>
-        <Main className="App">
-          <header className="App-header">
-            <h1 className="App-title">Matrx</h1>
-          </header>
-          <Matrix />
-          <Scoreboard />
-          <Toolbar />
-        </Main>
-      </Provider>
+      <main
+        className="App"
+        style={{ backgroundImage: `url(${img})` }}
+        active={open ? 'active' : null}
+      >
+        <header className="App-header">
+          <h1 className="App-title">Matrx</h1>
+        </header>
+        <Matrix />
+        <Scoreboard />
+        <Toolbar />
+      </main>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    open: state.open
+  };
+};
+
+export default connect(mapStateToProps)(App);

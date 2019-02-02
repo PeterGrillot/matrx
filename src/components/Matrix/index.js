@@ -1,5 +1,6 @@
+// @flow
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import './index.css';
 import _ from 'lodash';
 
 import { bindActionCreators } from 'redux';
@@ -9,22 +10,15 @@ import {
   updateCount,
   updateScore,
   decrementRound,
-  randomizeEntries
+  randomizeEntries,
+  updateMessage
 } from 'store/actions';
 
 import { integer, mix } from 'util/math';
 import { getCurrentVector } from 'util/vector';
 import { DEFAULT_STATE } from 'util/models';
 
-import { Button } from 'components/ui/Button';
-
-const MatrixArea = styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  width: 30rem;
-  height: 30rem;
-  margin: auto;
-`;
+import { Button } from 'components/UI/Button/index';
 
 const buttonElements = () => [...document.querySelectorAll('.button')];
 
@@ -84,8 +78,7 @@ class Matrix extends Component {
   gameOver = () => {
     const { score } = this.props;
     // PETE: NEEDS  MESSAGE
-    // eslint-disable-next-line
-    console.log(`Game Over. You scored ${score}`);
+    this.props.updateMessage(`Game Over. You scored ${score}`);
     this.props.updateScore(-1);
     this.props.decrementRound(false);
   };
@@ -123,7 +116,7 @@ class Matrix extends Component {
     }, () => {
       const { roundScore, steps } = this.state;
       if (roundScore === 10) {
-        const newScore = integer(steps) === 5 ? 1000 : integer(steps) * 100;
+        const newScore = integer(steps) >= 5 ? integer(steps) * 1000 : integer(steps) * 100;
         this.handleScore(newScore);
         this.resetMatrix();
       }
@@ -135,7 +128,7 @@ class Matrix extends Component {
 
   render() {
     return (
-      <MatrixArea className="Matrix">
+      <div className="Matrix">
         {this.props.entries.map((item, index) => {
           return (
             <Button
@@ -149,7 +142,7 @@ class Matrix extends Component {
             />
           );
         })}
-      </MatrixArea>
+      </div>
     );
   }
 }
@@ -165,7 +158,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispachToProps = (dispatch) => {
-  return bindActionCreators({ updateCount, updateScore, decrementRound, randomizeEntries }, dispatch);
+  return bindActionCreators({
+    updateCount,
+    updateScore,
+    decrementRound,
+    randomizeEntries,
+    updateMessage
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispachToProps)(Matrix);

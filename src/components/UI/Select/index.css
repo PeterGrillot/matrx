@@ -4,7 +4,7 @@ select {
   outline: 0;
   box-shadow: none;
   border: 0 !important;
-  background: #2c3e50;
+  background: var(--slate);
   background-image: none;
 }
 /* Custom Select */
@@ -13,7 +13,7 @@ select {
   width: 5em;
   height: 3em;
   line-height: 3;
-  background: #2c3e50;
+  background: var(--slate);
   overflow: hidden;
   border-radius: .25em;
 }

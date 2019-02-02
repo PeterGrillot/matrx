@@ -1,5 +1,5 @@
 // @flow
-import { integer } from 'util/math';
+import { integer, mix } from 'util/math';
 import { DEFAULT_STATE } from 'util/models';
 
 export function getCurrentVector(vectorArray: Array<any>) {
@@ -27,7 +27,7 @@ export function createMatrixStore(newMatrixSize: number) {
   });
   // Create Store
   return {
-    entries: newEntries,
+    entries: mix(newEntries),
     matrix: newMatrix,
     size: newMatrixSize,
     ...DEFAULT_STATE
