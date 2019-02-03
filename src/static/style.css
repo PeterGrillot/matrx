@@ -2,12 +2,18 @@
   /*Colors*/
   --green: #74fd93;
   --red: #f16c6c;
+  --red-transparent: #f16c6cee;
   --purple: #9100ff;
   --white: #F5F5F5;
+  --slate:  #2c3e50;
   --gradient: linear-gradient(45deg, #f16c6c, #9100ff);
 
   /*Typography*/
-  --font: 'Major Mono Display', monospace;
+  --display-font: 'Major Mono Display', monospace;
+  --body-font: 'Inconsolata', monospace;
+
+  /* Sizing */
+  --toolbar-width: 300px;
 }
 
 * {
@@ -19,19 +25,26 @@ body {
   padding: 0;
   margin: 0;
   font-size: 10px;
+  user-select: none;
 }
 
 body {
   font-size: 2rem;
-  font-family: var(--font);
+  font-family: var(--body-font);
+  color: var(--slate);
 }
 
 .App {
+  background-size: 10vw;
   text-align: center;
   height: 100vh;
-  transition: 1s;
-  animation-duration: 2s;
-  animation-timing-function: ease-out;
+  transition: 600ms ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.App[active] {
+  margin-left: calc( -1 * var(--toolbar-width));
 }
 
 .App--pass {
@@ -42,24 +55,13 @@ body {
   animation-name: fail;
 }
 
-button {
-  background: var(--gradient);
-  font-family: var(--font);
-  font-size: 3rem;
-  border: none;
-  padding: 2rem;
-  flex-basis: 10rem;
-  height: 10rem;
-  color: var(--white);
-}
-
-button[disabled] {
-  opacity: 0.8;
-  background: linear-gradient(-45deg, #c16c6c, #5100ff);
-}
-
 h1 {
   font-size: 2em;
+  margin: 0;
+  padding: .4em 0;
+}
+h1, button{
+  font-family: var(--display-font)
 }
 
 p {

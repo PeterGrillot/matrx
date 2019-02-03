@@ -1,0 +1,40 @@
+.Toolbar {
+  background: var(--red-transparent);
+  position: absolute;
+  width: var(--toolbar-width);
+  top: 0;
+  height: 100vh;
+  padding: 1rem;
+  /*foreal!?*/
+  right: calc( -1 * var(--toolbar-width));
+  transition: 400ms right ease-in-out;
+}
+
+.Toolbar[active]{
+  right: 0;
+}
+
+.Toolbar__toggle {
+  left: -9rem;
+  text-align: center;
+  width: 14rem;
+  top: 6rem;
+  background: var(--red); 
+  height: 4rem;
+  transform: rotate(-90deg);
+  position: absolute;
+  font-family: var(--body-font);
+  border-radius: .4rem .4rem 0 0;
+  outline: none;
+}
+
+.Toolbar__toggle:hover,
+.Toolbar__toggle:focus,
+.Toolbar__toggle:active {
+  filter: brightness(120%);
+  cursor: pointer;
+}
+
+.Toolbar__text {
+  text-align: left;
+}

@@ -2,7 +2,8 @@
   "parser": "babel-eslint",
   "plugins": [
     "react",
-    "jsx-control-statements"
+    "jsx-control-statements",
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
@@ -46,6 +47,8 @@
     "eol-last": "error",
     "jsx-quotes": "warn",
     "eqeqeq": "error",
+    "flowtype/define-flow-type": 1,
+    "flowtype/use-flow-type": 1,
     "generator-star-spacing": ["error", { "before": true, "after": true }],
     "guard-for-in": "error",
     "handle-callback-err": ["error", "^(err|error)$"],

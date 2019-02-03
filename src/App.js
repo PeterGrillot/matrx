@@ -1,52 +1,38 @@
 import React, { Component } from 'react';
-import Matrix from './components/Matrix';
-import Scoreboard from './components/Scoreboard';
-import styled from 'styled-components';
+import { connect } from 'react-redux';
+
+import Matrix from 'components/Matrix/index.js';
+import Scoreboard from 'components/Scoreboard/index.js';
+import Toolbar from 'components/Toolbar/index.js';
 
 // Static
-import './static/styles.css';
+import './static/style.css';
 import img from './static/morocco.png';
 
-// Redux
-import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import reducer from './store/reducers';
-import { DEFAULT_STATE } from './util/models';
-// Logger with default options
-import logger from 'redux-logger';
-// Create Store
-const matrix = {
-  entries: [
-    0, 1, 2, 3, 4, 5, 6, 7, 8
-  ],
-  vector: [
-    [0, 0], [0, 1], [0, 2],
-    [1, 0], [1, 1], [1, 2],
-    [2, 0], [2, 1], [2, 2]
-  ],
-  ...DEFAULT_STATE
-};
-
-const store = createStore(reducer, matrix, applyMiddleware(logger));
-const Main = styled.main`
-  padding: 4em;
-  background-size: 10vw;
-  background-image: url(${img});
-`;
 class App extends Component {
   render() {
+    const { open } = this.props;
     return (
-      <Provider store={store}>
-        <Main className="App">
-          <header className="App-header">
-            <h1 className="App-title">Matrx</h1>
-          </header>
-          <Matrix />
-          <Scoreboard />
-        </Main>
-      </Provider>
+      <main
+        className="App"
+        style={{ backgroundImage: `url(${img})` }}
+        active={open ? 'active' : null}
+      >
+        <header className="App-header">
+          <h1 className="App-title">Matrx</h1>
+        </header>
+        <Matrix />
+        <Scoreboard />
+        <Toolbar />
+      </main>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    open: state.open
+  };
+};
+
+export default connect(mapStateToProps)(App);

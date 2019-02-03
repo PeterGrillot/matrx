@@ -1,0 +1,12 @@
+.Message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Message p{
+  background: #eeeeee;
+  padding: 1rem 2rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
