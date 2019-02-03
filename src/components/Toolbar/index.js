@@ -10,7 +10,7 @@ import {
   toogleToolbar
 } from 'store/actions';
 
-import { Select } from 'components/UI/Select/index';
+import { Select } from 'components/UI/Select/';
 
 const matrixSelectOptions = [];
 for (let i = 5; i <= 10; i++) {

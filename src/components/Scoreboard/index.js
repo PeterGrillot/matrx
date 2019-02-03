@@ -3,6 +3,8 @@ import * as React from 'react';
 import './index.css';
 import { connect } from 'react-redux';
 
+import { Message } from 'components/UI/Message/';
+
 type Props = {
   count: number,
   score: number,
@@ -11,6 +13,10 @@ type Props = {
 }
 
 class Scoreboard extends React.Component<Props, State> {
+  state = {
+    open: true
+  }
+
   render() {
     const {
       count,
@@ -24,7 +30,9 @@ class Scoreboard extends React.Component<Props, State> {
         <div>Count: {count}</div>
         <div>Score: {score}</div>
         <div>Round: {round}</div>
-        <div>{message}</div>
+        <Message
+          message={message}
+        />
       </div>
     );
   }
