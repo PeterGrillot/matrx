@@ -5,5 +5,6 @@ export const DEFAULT_STATE = {
   steps: 0,
   round: 3,
   message: '',
-  open: false
+  open: false,
+  hiScore: localStorage.getItem('hiScore') || 0
 };

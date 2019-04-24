@@ -6,6 +6,7 @@ export const RANDOMIZE_ENTRIES = 'RANDOMIZE_ENTRIES';
 export const RESET_STORE = 'RESET_STORE';
 export const UPDATE_MATRIX = 'UPDATE_MATRIX';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
+export const SET_HISCORE = 'SET_HISCORE';
 
 export const updateCount = (count) => {
   return {
@@ -56,6 +57,13 @@ export const updateMessage = (message) => {
   return {
     type: UPDATE_MESSAGE,
     message
+  };
+};
+
+export const setHiScore = (hiScore) => {
+  return {
+    type: SET_HISCORE,
+    hiScore
   };
 };
 

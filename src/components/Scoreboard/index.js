@@ -1,14 +1,17 @@
 // @flow
 import * as React from 'react';
-import './index.css';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import { Message } from 'components/UI/Message/';
+
+import './index.css';
 
 type Props = {
   count: number,
   score: number,
   round: number,
+  hiScore: number,
   message: string
 }
 
@@ -22,7 +25,8 @@ class Scoreboard extends React.Component<Props, State> {
       count,
       score,
       round,
-      message
+      message,
+      hiScore
     } = this.props;
 
     return (
@@ -30,9 +34,10 @@ class Scoreboard extends React.Component<Props, State> {
         <div>Count: {count}</div>
         <div>Score: {score}</div>
         <div>Round: {round}</div>
-        <Message
+        {!_.isEmpty(message) ? <Message
           message={message}
-        />
+        /> : null}
+        <div>Hi-Score: {hiScore}</div>
       </div>
     );
   }
@@ -42,6 +47,7 @@ function mapStateToProps(state) {
   return {
     count: state.count,
     score: state.score,
+    hiScore: state.hiScore,
     round: state.round,
     message: state.message
   };

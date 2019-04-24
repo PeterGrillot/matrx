@@ -34,7 +34,7 @@ class Toolbar extends React.Component<Props, State> {
   }
 
   handleChange = (event: SyntheticEvent<HTMLSelectElement>) => {
-    this.props.updateMatrix(event.target.value);
+    this.props.updateMatrix(event.currentTarget.value);
   }
 
   handleClickOutside = () => {
