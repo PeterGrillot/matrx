@@ -11,7 +11,8 @@ import {
   updateScore,
   decrementRound,
   randomizeEntries,
-  updateMessage
+  updateMessage,
+  setHiScore
 } from 'store/actions';
 
 import { integer, mix } from 'util/math';
@@ -22,7 +23,23 @@ import { Button } from 'components/UI/Button/index';
 
 const buttonElements = () => [...document.querySelectorAll('.button')];
 
-class Matrix extends Component {
+type Props = {
+  updateCount: (count: number) => void,
+  updateScore: (score: number) => void,
+  decrementRound: (round: number) => void,
+  randomizeEntries: () => void,
+  updateMessage: (message: stirng) => void,
+  setHiScore: (score: number) => void
+}
+
+type State = {
+  roundScore: number,
+  count: number,
+  steps: number,
+  selectedArray: Array<string>
+}
+
+class Matrix extends Component<Props, State> {
   state = {
     // count * steps, aggragated
     roundScore: DEFAULT_STATE.score,
@@ -71,14 +88,18 @@ class Matrix extends Component {
 
   resetButtons = () => {
     buttonElements().map((button) => {
-      return button.setAttribute('disabled', true);
+      return button.setAttribute('disabled', 'true');
     });
   };
 
   gameOver = () => {
     const { score } = this.props;
-    // PETE: NEEDS  MESSAGE
-    this.props.updateMessage(`Game Over. You scored ${score}`);
+    this.props.setHiScore(score);
+    const hiScoreMessage = score > this.props.hiScore ? 'You got a hi-score' : '';
+    this.props.updateMessage(`Game Over. You scored ${score}.${hiScoreMessage}`);
+    setTimeout(() => {
+      this.props.updateMessage('');
+    }, 5000);
     this.props.updateScore(-1);
     this.props.decrementRound(false);
   };
@@ -153,6 +174,7 @@ const mapStateToProps = (state) => {
     matrix: state.matrix,
     size: state.size,
     score: state.score,
+    hiScore: state.hiScore,
     round: state.round
   };
 };
@@ -163,7 +185,8 @@ const mapDispachToProps = (dispatch) => {
     updateScore,
     decrementRound,
     randomizeEntries,
-    updateMessage
+    updateMessage,
+    setHiScore
   }, dispatch);
 };
 

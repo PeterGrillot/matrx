@@ -6,7 +6,8 @@ import {
   RANDOMIZE_ENTRIES,
   RESET_STORE,
   UPDATE_MATRIX,
-  UPDATE_MESSAGE
+  UPDATE_MESSAGE,
+  SET_HISCORE
 } from './actions';
 
 import { DEFAULT_STATE } from 'util/models';
@@ -61,6 +62,17 @@ export default (state = DEFAULT_STATE, action) => {
       ...state,
       open: !state.open
     };
+  }
+  case SET_HISCORE: {
+    const currentHiScore = localStorage.getItem('hiScore');
+    if (action.hiScore > currentHiScore) {
+      localStorage.setItem('hiScore', action.hiScore);
+      return {
+        ...state,
+        hiScore: action.hiScore
+      };
+    }
+    return state;
   }
   default: {
     return state;

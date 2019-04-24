@@ -6,7 +6,8 @@ type Props = {
   options: Array<{
     value: string | number,
     label: string
-  }>
+  }>,
+  handleChange: (event: SyntheticEvent<HTMLSelectElement>) => void
 }
 
 export const Select = (props: Props) => {
