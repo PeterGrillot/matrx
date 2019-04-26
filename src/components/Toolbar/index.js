@@ -9,13 +9,10 @@ import {
   updateMatrix,
   toogleToolbar
 } from 'store/actions';
-
+import { createMatrixSizes } from 'util/models';
 import { Select } from 'components/UI/Select/';
 
-const matrixSelectOptions = [];
-for (let i = 5; i <= 10; i++) {
-  matrixSelectOptions.push({ label: `[${i}x${i}]`, value: i });
-}
+const matrixSelectOptions = createMatrixSizes();
 
 type Props = {
   size: number,
@@ -50,7 +47,7 @@ class Toolbar extends React.Component<Props, State> {
         className="Toolbar"
         active={open ? 'active' : null}
       >
-        <button className="Toolbar__toggle" onClick={this.toggleToolbar}>{ open ? '[X]' : '[?]'}</button>
+        <button className="Toolbar__toggle" onClick={this.toggleToolbar}>{open ? '[X]' : '[?]'}</button>
         <section className="Toolbar__text">
           <h2>How To:</h2>
           <p>Select numbers to get to 10 using the MOST moves. You can only select adjacent numbers. 100 pts per move until 5 then 1000 after. Three rounds per game.</p>

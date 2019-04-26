@@ -1,4 +1,3 @@
-// @flow
 import {
   UPDATE_COUNT,
   UPDATE_SCORE,

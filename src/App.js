@@ -31,6 +31,7 @@ class App extends Component<Props> {
           <Toolbar />
         </main>
         <Background/>
+        <div className="GradientBackground" />
       </React.Fragment>
     );
   }

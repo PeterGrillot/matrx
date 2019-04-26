@@ -6,10 +6,11 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import reducer from './store/reducers';
 import { createMatrixStore } from './util/vector';
+import { MATRIX_SETTINGS } from './util/models';
 
 // Logger with default options
 import logger from 'redux-logger';
-const newMatrixSize = 5;
+const newMatrixSize = MATRIX_SETTINGS.min;
 const newMatrixStore = createMatrixStore(newMatrixSize);
 
 const store = createStore(reducer, newMatrixStore, applyMiddleware(logger));

@@ -1,12 +1,12 @@
 :root {
   /*Colors*/
-  --green: #74fd93;
-  --red: #f16c6c;
+  --green:           #74fd93;
+  --red:             #f16c6c;
   --red-transparent: #f16c6cee;
-  --purple: #9100ff;
-  --white: #F5F5F5;
-  --slate:  #2c3e50;
-  --gradient: linear-gradient(45deg, #ffdddd, #ffa1e9);
+  --purple:          #9100ff;
+  --white:           #F5F5F5;
+  --slate:           #2c3e50;
+  --gradient:        linear-gradient(45deg, #ffdddd, #ffa1e9);
 
   --button-color-0: #d56a6a;
   --button-color-1: #fffcc7;
@@ -20,15 +20,16 @@
   --button-color-9: #d269b6;
   /*Typography*/
   --display-font: 'Major Mono Display', monospace;
-  --body-font: 'Inconsolata', monospace;
+  --body-font:    'Inconsolata', monospace;
 
   /* Sizing */
   --toolbar-width: 300px;
 
   /* Layers */
-  --layer-0: 0;
-  --layer-1: 1;
-  --layer-2: 2;
+  --layer-neg: -1;
+  --layer-0:    0;
+  --layer-1:    1;
+  --layer-2:    2;
 }
 
 * {
@@ -46,8 +47,19 @@ body {
 body {
   font-size: 2rem;
   font-family: var(--body-font);
-  background-color: var(--slate);
   color: var(--white);
+  background-color: var(--slate);
+}
+
+.GradientBackground{
+  background: linear-gradient(270deg, #1c0022, #002a55);
+  background-size: 400% 400%;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: var(--layer-neg);
+  top: 0;
+  animation: grashift 16s ease infinite;
 }
 
 .App {
@@ -66,14 +78,6 @@ body {
   margin-left: calc( -1 * var(--toolbar-width));
 }
 
-.App--pass {
-  animation-name: pass;
-}
-
-.App--fail {
-  animation-name: fail;
-}
-
 h1 {
   font-size: 2em;
   margin: 0;
@@ -87,23 +91,8 @@ p {
   font-size: 1em;
 }
 
-/* The animation code */
-@keyframes pass {
-  0% {
-    background-color: var(--green);
-  }
-
-  100% {
-    background-color: white;
-  }
-}
-
-@keyframes fail {
-  0% {
-    background-color: var(--red)
-  }
-
-  100% {
-    background-color: white
-  }
+@keyframes grashift { 
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }

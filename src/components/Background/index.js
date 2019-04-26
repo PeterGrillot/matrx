@@ -1,16 +1,12 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 
 import './index.css';
 
 const docWidth = window.innerWidth;
 const docHeight = window.innerHeight;
 
-type Props = {
-  mouseX: number, mouseY: number
-}
-
-class Background extends Component<Props> {
+class Background extends React.PureComponent<*> {
   componentDidMount() {
     this.drawCanvas();
   }
@@ -35,14 +31,16 @@ class Background extends Component<Props> {
       ctx.moveTo(randomWidth, canvasH * Math.random());
       ctx.lineTo(randomWidth, canvasH * Math.random());
       ctx.strokeStyle = randomColor;
+      ctx.closePath();
       ctx.stroke();
 
       ctx.beginPath();
       ctx.moveTo(canvasW * Math.random(), randomHight);
       ctx.lineTo(canvasW * Math.random(), randomHight);
       ctx.strokeStyle = randomColor;
+      ctx.closePath();
       ctx.stroke();
-    }, 1000);
+    }, 10000);
   }
 
   render() {
