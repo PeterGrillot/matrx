@@ -3,8 +3,7 @@
   "plugins": [
     "react",
     "jsx-control-statements",
-    "flowtype",
-    "postcss([ require('postcss-for')"
+    "flowtype"
   ],
   "parserOptions": {
     "ecmaVersion": 6,
