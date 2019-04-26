@@ -1,7 +1,11 @@
-.Scorebaord {
+.Scoreboard {
   display: flex;
+  align-self: center;
+  flex-grow: 1;
+  align-items: center;
   padding: 1rem;
-  background: rgba(255,255,255,0.3);
-  width: 30rem;
-  margin: auto;
+}
+
+.Scoreboard__tile {
+  padding: 0 8px;
 }

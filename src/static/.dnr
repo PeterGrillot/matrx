@@ -1,0 +1,42 @@
+canvasRender = () => {
+    const canvas = this.refs.canvas;
+    const ctx = canvas.getContext('2d');
+    const { mouseX, mouseY } = this.props;
+
+    const canvasW = docWidth;
+    const canvasH = docHeight;
+
+    const circleRadius = 4;
+    const circleMargin = 60;
+
+    const circleAmountX = Math.floor(docWidth / (circleMargin * 2));
+    const circleAmountY = Math.floor(docHeight / (circleMargin * 2));
+
+    ctx.clearRect(0, 0, canvasW, canvasH);
+    for (let i = 0; i < circleAmountX + 1; i++) {
+      for (let k = 0; k < circleAmountY + 1; k++) {
+        const x = i * (circleRadius + circleMargin * 2);
+        const y = k * (circleRadius + circleMargin * 2);
+
+        const dx = mouseX - x;
+        const dy = mouseY - y;
+
+        let inflation = 1;
+        const inflationAmount = 6;
+        const cutoff = 150;
+
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance <= cutoff && distance > 0) {
+          inflation = inflationAmount - (distance / ((cutoff / inflationAmount) + 2));
+        } else if (distance === 0) {
+          inflation = inflationAmount;
+        }
+        ctx.beginPath();
+        ctx.arc(x, y, circleRadius * inflation, 0, 2 * Math.PI);
+        ctx.fillStyle = '#e1e2ffee';
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+  }

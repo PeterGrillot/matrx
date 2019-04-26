@@ -6,5 +6,6 @@
   max-width: 60rem;
   max-height: 60rem;
   margin: auto;
-  background: var(--red)
+  background: var(--red);
+  position: relative;
 }

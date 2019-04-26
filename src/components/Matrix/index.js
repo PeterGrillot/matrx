@@ -24,11 +24,17 @@ import { Button } from 'components/UI/Button/index';
 const buttonElements = () => [...document.querySelectorAll('.button')];
 
 type Props = {
+  entries: Array<number>,
+  matrix: Array<number>,
+  size: number,
+  score: number,
+  hiScore: number,
+  round: number,
   updateCount: (count: number) => void,
   updateScore: (score: number) => void,
-  decrementRound: (round: number) => void,
-  randomizeEntries: () => void,
-  updateMessage: (message: stirng) => void,
+  decrementRound: (toggle: boolean) => void,
+  randomizeEntries: (entries: Array<number>) => void,
+  updateMessage: (message: string) => void,
   setHiScore: (score: number) => void
 }
 
@@ -94,14 +100,13 @@ class Matrix extends Component<Props, State> {
 
   gameOver = () => {
     const { score } = this.props;
-    this.props.setHiScore(score);
-    const hiScoreMessage = score > this.props.hiScore ? 'You got a hi-score' : '';
-    this.props.updateMessage(`Game Over. You scored ${score}.${hiScoreMessage}`);
+    this.props.updateMessage(`Game Over. You scored ${score}!`);
     setTimeout(() => {
       this.props.updateMessage('');
-    }, 5000);
+    }, 8000);
     this.props.updateScore(-1);
     this.props.decrementRound(false);
+    this.props.setHiScore(score);
   };
 
   getButtonElement = (buttonId) => {

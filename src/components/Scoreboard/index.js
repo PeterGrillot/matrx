@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { Message } from 'components/UI/Message/';
 
@@ -15,33 +15,30 @@ type Props = {
   message: string
 }
 
-class Scoreboard extends React.Component<Props, State> {
-  state = {
-    open: true
-  }
-
-  render() {
-    const {
-      count,
-      score,
-      round,
-      message,
-      hiScore
-    } = this.props;
-
-    return (
+const Scoreboard = (props: Props) => {
+  const {
+    count,
+    score,
+    round,
+    message,
+    hiScore
+  } = props;
+  return (
+    <React.Fragment>
       <div className="Scoreboard">
-        <div>Count: {count}</div>
-        <div>Score: {score}</div>
-        <div>Round: {round}</div>
-        {!_.isEmpty(message) ? <Message
-          message={message}
-        /> : null}
-        <div>Hi-Score: {hiScore}</div>
+        <span className="Scoreboard__tile">Count: {count}</span>
+        <span className="Scoreboard__tile">Score: {score}</span>
+        <span className="Scoreboard__tile">Round: {round}</span>
+        <span className="Scoreboard__tile">Hi-Score: {hiScore}</span>
+
       </div>
-    );
-  }
-}
+      <Message
+        expanded={!_.isEmpty(message)}
+        message={message}
+      />
+    </React.Fragment>
+  );
+};
 
 function mapStateToProps(state) {
   return {

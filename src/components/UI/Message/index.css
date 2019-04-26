@@ -1,12 +1,35 @@
 .Message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: left;
+  transition: 400ms all ease-in-out;
+  background: #313342b8;
+  border-top: .1rem solid #dddddd66;
+  padding-top: .4rem;
+  position: absolute;
+  bottom: -52vh;
+  height: 60vh;
+  width: 100vw;
+  z-index: var(--layer-1);
 }
 
 .Message p{
-  background: #eeeeee;
   padding: 1rem 2rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: .4rem;
+}
+
+.Message[active="active"] {
+  bottom: 0;
+  transition: 400ms all ease-in-out;
+}
+
+.Typist .Cursor {
+  display: inline-block;
+}
+.Typist .Cursor--blinking {
+  opacity: 1;
+  animation: blink 1s linear infinite;
+}
+@keyframes blink {
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
 }

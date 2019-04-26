@@ -1,3 +1,4 @@
+// @flow
 import {
   UPDATE_COUNT,
   UPDATE_SCORE,
@@ -45,9 +46,13 @@ export default (state = DEFAULT_STATE, action) => {
     return DEFAULT_STATE;
   }
   case UPDATE_MESSAGE: {
+    let message = action.message;
+    if (state.score > state.hiScore) {
+      message = `${message} You got a Hi-score!`;
+    }
     return {
       ...state,
-      message: action.message
+      message
     };
   }
   case UPDATE_MATRIX: {

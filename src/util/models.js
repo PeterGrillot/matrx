@@ -1,3 +1,9 @@
+// **************************//
+// Count: count * steps, aggragated
+// Step: Points in each round
+// Steps: Number of moves
+// buttons to enable
+// **************************//
 export const DEFAULT_STATE = {
   score: 0,
   roundScore: 0,

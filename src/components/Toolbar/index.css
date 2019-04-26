@@ -8,6 +8,7 @@
   /*foreal!?*/
   right: calc( -1 * var(--toolbar-width));
   transition: 400ms right ease-in-out;
+  z-index: var(--layer-2);
 }
 
 .Toolbar[active]{
@@ -24,7 +25,9 @@
   transform: rotate(-90deg);
   position: absolute;
   font-family: var(--body-font);
+  font-size: 2rem;
   border-radius: .4rem .4rem 0 0;
+  border: none;
   outline: none;
 }
 

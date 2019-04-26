@@ -1,12 +1,56 @@
 /* Button Reset and Custom */
-button {
+.button {
   background: var(--gradient);
   font-size: 2.6rem;
   border: none;
   color: var(--white);
 }
 
-button[disabled] {
+.button[disabled] {
   opacity: 0.8;
   background: linear-gradient(-45deg, #c16c6c, #5100ff);
+}
+
+.button[data-num="0"]{
+  color: var(--button-color-0)
+}
+
+.button[data-num="1"]{
+  color: var(--button-color-1)
+}
+
+.button[data-num="2"]{
+  color: var(--button-color-2)
+}
+
+.button[data-num="3"]{
+  color: var(--button-color-3)
+}
+
+.button[data-num="4"]{
+  color: var(--button-color-4)
+}
+
+.button[data-num="5"]{
+  color: var(--button-color-5)
+}
+
+.button[data-num="6"]{
+  color: var(--button-color-6)
+}
+
+.button[data-num="7"]{
+  color: var(--button-color-7)
+}
+
+.button[data-num="8"]{
+  color: var(--button-color-8)
+}
+
+.button[data-num="9"]{
+  color: var(--button-color-9)
+}
+
+@for $i from 1 to 5 by 2 {
+  .button[data-num=$i] { width: $(i)px; }
 }
