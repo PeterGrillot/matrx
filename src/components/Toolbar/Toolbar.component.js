@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import './index.css';
+import './Toolbar.css';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

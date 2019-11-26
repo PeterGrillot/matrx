@@ -5,8 +5,8 @@
 // buttons to enable
 // **************************//
 export const MATRIX_SETTINGS = {
-  min: 6,
-  max: 12
+  min: 4,
+  max: 6
 };
 
 export const DEFAULT_STATE = {
@@ -14,9 +14,9 @@ export const DEFAULT_STATE = {
   roundScore: 0,
   count: 0,
   steps: 0,
-  round: 3,
+  round: 0,
   size: MATRIX_SETTINGS.min,
-  message: '',
+  message: [],
   open: false,
   hiScore: localStorage.getItem('hiScore') || 0
 };

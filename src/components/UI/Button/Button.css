@@ -1,0 +1,36 @@
+/* Button Reset and Custom */
+.button {
+  background: var(--button-gradient-active);
+  font-size: 2.6rem;
+  font-weight: bold;
+  border-radius: 100%;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+button::-moz-focusring,button::-moz-focus-inner{
+  outline: none;
+  border-style: 0;
+}
+
+.button[disabled] {
+  opacity: 0.8;
+  transition: var(--transition);
+  background: var(--button-gradient-disabled);
+  cursor: not-allowed;
+}
+.button[inactive] {
+  opacity: 0.2;
+  transition: var(--transition);
+  transform: rotate(720deg);
+  background: var(--button-gradient-inactive);
+  cursor: not-allowed;
+}
+
+@for $i from 0 to 9 {
+  .button[data-num="$i"] {
+    color: var(--button-color-$i)
+   }
+}

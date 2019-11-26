@@ -16,11 +16,11 @@
 }
 
 .Toolbar__toggle {
-  left: -9rem;
+  left: -4rem;
   text-align: center;
-  width: 14rem;
-  top: 6rem;
-  background: var(--red); 
+  width: 4rem;
+  top: 1.8rem;
+  background: var(--red);
   height: 4rem;
   transform: rotate(-90deg);
   position: absolute;

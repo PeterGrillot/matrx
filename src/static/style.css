@@ -8,16 +8,19 @@
   --slate:           #2c3e50;
   --gradient:        linear-gradient(45deg, #ffdddd, #ffa1e9);
 
-  --button-color-0: #d56a6a;
-  --button-color-1: #fffcc7;
-  --button-color-2: #fffcc7;
-  --button-color-3: #8db0af;
-  --button-color-4: #8db0af;
-  --button-color-5: #8dc3ed;
-  --button-color-6: #8dc3ed;
-  --button-color-7: #51d36f;
-  --button-color-8: #51d36f;
-  --button-color-9: #d269b6;
+  --button-color-0: #e75656;
+  --button-color-1: #fffa98;
+  --button-color-2: #f1ea62;
+  --button-color-3: #36ece6;
+  --button-color-4: #28e0da;
+  --button-color-5: #64aee7;
+  --button-color-6: #2699f1;
+  --button-color-7: #3edb63;
+  --button-color-8: #11e943;
+  --button-color-9: #f53ec4;
+  --button-gradient-active: linear-gradient(-45deg, #c16c6c, #5100ff);
+  --button-gradient-inactive: #5100ff;
+  --button-gradient-disabled: linear-gradient(-45deg, #3c0f57, #18175c);
   /*Typography*/
   --display-font: 'Major Mono Display', monospace;
   --body-font:    'Inconsolata', monospace;
@@ -30,6 +33,9 @@
   --layer-0:    0;
   --layer-1:    1;
   --layer-2:    2;
+
+  /* Animation */
+  --transition: all 300ms ease-in-out;
 }
 
 * {

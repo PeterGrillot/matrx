@@ -1,8 +1,8 @@
 export const UPDATE_COUNT = 'UPDATE_COUNT';
 export const UPDATE_SCORE = 'UPDATE_SCORE';
 export const TOGGLE_TOOLBAR = 'TOGGLE_TOOLBAR';
-export const DECREMENT_ROUND = 'DECREMENT_ROUND';
-export const RANDOMIZE_ENTRIES = 'RANDOMIZE_ENTRIES';
+export const INCREMENT_ROUND = 'INCREMENT_ROUND';
+export const SET_ENTRIES = 'SET_ENTRIES';
 export const RESET_STORE = 'RESET_STORE';
 export const UPDATE_MATRIX = 'UPDATE_MATRIX';
 export const UPDATE_MESSAGE = 'UPDATE_MESSAGE';
@@ -28,16 +28,16 @@ export const toogleToolbar = () => {
   };
 };
 
-export const decrementRound = (round) => {
+export const incrementRound = (round) => {
   return {
-    type: DECREMENT_ROUND,
+    type: INCREMENT_ROUND,
     round
   };
 };
 
-export const randomizeEntries = (entries) => {
+export const setEntries = (entries) => {
   return {
-    type: RANDOMIZE_ENTRIES,
+    type: SET_ENTRIES,
     entries
   };
 };

@@ -1,24 +1,23 @@
-.Message {
-  text-align: left;
+.Console {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: hidden;
+  opacity: 0.4;
   transition: 400ms all ease-in-out;
-  background: #313342b8;
-  border-top: .1rem solid #dddddd66;
   padding-top: .4rem;
   position: absolute;
-  bottom: -52vh;
-  height: 60vh;
+  top: 0;
+  height: 100vh;
   width: 100vw;
-  z-index: var(--layer-1);
+  z-index: var(--layer-neg);
 }
 
-.Message p{
-  padding: 1rem 2rem;
-  border-radius: .4rem;
-}
-
-.Message[active="active"] {
-  bottom: 0;
-  transition: 400ms all ease-in-out;
+.Console span{
+  display: flex;
+  padding: 0;
+  margin: 0;
 }
 
 .Typist .Cursor {

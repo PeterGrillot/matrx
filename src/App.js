@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Matrix from 'components/Matrix/index.js';
-import Scoreboard from 'components/Scoreboard/index.js';
-import Toolbar from 'components/Toolbar/index.js';
-import Background from 'components/Background/index.js';
+import Matrix from 'components/Matrix/Matrix.component.js';
+import Scoreboard from 'components/Scoreboard/Scoreboard.component.js';
+import Toolbar from 'components/Toolbar/Toolbar.component.js';
 
 // Static
 import './static/style.css';
+// import 'normalize.css';
 
 type Props = {
   open: boolean
@@ -30,7 +30,6 @@ class App extends Component<Props> {
           <Scoreboard />
           <Toolbar />
         </main>
-        <Background/>
         <div className="GradientBackground" />
       </React.Fragment>
     );
