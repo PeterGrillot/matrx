@@ -27,9 +27,9 @@ export function createMatrixStore(newMatrixSize: number) {
   });
   // Create Store
   return {
+    ...DEFAULT_STATE,
     entries: mix(newEntries),
     matrix: newMatrix,
-    size: newMatrixSize,
-    ...DEFAULT_STATE
+    size: newMatrixSize
   };
 }

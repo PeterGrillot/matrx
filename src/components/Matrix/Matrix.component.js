@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import './index.css';
+import './Matrix.css';
 import _ from 'lodash';
 
 import { bindActionCreators } from 'redux';
@@ -9,26 +9,34 @@ import { connect } from 'react-redux';
 import {
   updateCount,
   updateScore,
-  decrementRound,
-  randomizeEntries,
+  incrementRound,
+  setEntries,
   updateMessage,
   setHiScore
 } from 'store/actions';
 
-import { integer, mix } from 'util/math';
+import { integer, weightedRandom } from 'util/math';
 import { getCurrentVector } from 'util/vector';
 import { DEFAULT_STATE } from 'util/models';
 
-import { Button } from 'components/UI/Button/index';
+import { Button } from 'components/UI/Button/Button';
 
+const MARKED_CHAR = '!';
+const NEG_SCORE = -1000;
 const buttonElements = () => [...document.querySelectorAll('.button')];
 
 type Props = {
+  entries: Array<number>,
+  matrix: Array<number>,
+  size: number,
+  score: number,
+  hiScore: number,
+  round: number,
   updateCount: (count: number) => void,
   updateScore: (score: number) => void,
-  decrementRound: (round: number) => void,
-  randomizeEntries: () => void,
-  updateMessage: (message: stirng) => void,
+  incrementRound: (toggle: boolean) => void,
+  setEntries: (entries: Array<number>) => void,
+  updateMessage: (message: string) => void,
   setHiScore: (score: number) => void
 }
 
@@ -51,62 +59,54 @@ class Matrix extends Component<Props, State> {
     selectedArray: []
   };
 
-  componentDidMount = () => {
-    this.props.randomizeEntries(mix(this.props.entries));
-  };
-
   handleScore = (newScore) => {
     this.props.updateScore(newScore);
   };
 
-  buildMatrix = () => {
-    this.props.updateCount(-1);
-    this.props.randomizeEntries(mix(this.props.entries));
-  };
-
-  async decrementRound(toggle) {
-    await this.props.decrementRound(toggle);
+  async incrementRound(toggle) {
+    await this.props.incrementRound(toggle);
   }
 
-  getVector(location: number) {
-    return this.props.matrix[location];
+  async setSelected(vector: Array<number>) {
+    const { entries } = this.props;
+    const size = Math.sqrt(this.props.entries.length);
+    const nVector = vector.map((i) => parseInt(i, 10));
+    const location = (nVector[0] * size) + nVector[1];
+    const newArray = _.map(entries, (i, x) => x === location ? MARKED_CHAR : i);
+    this.props.setEntries(newArray);
+    return true;
   }
+
+  getVector = (location: number) => this.props.matrix[location]
 
   resetMatrix = () => {
     buttonElements().map((button) => {
-      return button.removeAttribute('disabled');
+      button.removeAttribute('disabled');
+      button.removeAttribute('inactive');
     });
-    this.decrementRound(true).then(() => {
-      this.buildMatrix();
+    this.incrementRound(true).then(() => {
+      this.props.updateCount(-1);
       this.setState({ ...DEFAULT_STATE, selectedArray: [] });
-      if (this.props.round === 0) {
-        this.gameOver();
-        return false;
-      }
     });
   };
 
   resetButtons = () => {
     buttonElements().map((button) => {
-      return button.setAttribute('disabled', 'true');
+      button.setAttribute('disabled', 'true');
     });
   };
 
-  gameOver = () => {
-    const { score } = this.props;
-    this.props.setHiScore(score);
-    const hiScoreMessage = score > this.props.hiScore ? 'You got a hi-score' : '';
-    this.props.updateMessage(`Game Over. You scored ${score}.${hiScoreMessage}`);
-    setTimeout(() => {
-      this.props.updateMessage('');
-    }, 5000);
-    this.props.updateScore(-1);
-    this.props.decrementRound(false);
+  convertSelected = () => {
+    const { entries } = this.props;
+    const convertedArray = _.map(entries, (i) => i === MARKED_CHAR ? weightedRandom() : i);
+    this.props.setEntries(convertedArray);
   };
 
   getButtonElement = (buttonId) => {
     return document.querySelector(`button[data-vector="${buttonId}"]`);
   };
+
+  message = (messageString: string) => this.props.updateMessage(messageString);
 
   selectEntry = (event) => {
     const target = event.currentTarget;
@@ -129,21 +129,28 @@ class Matrix extends Component<Props, State> {
     });
 
     this.resetButtons();
-    target.setAttribute('disabled', true);
+    target.setAttribute('inactive', true);
+
     this.setState({
       steps: this.state.steps + 1,
       count: this.props.updateCount(integer(target.dataset.num)),
       roundScore: this.state.roundScore + integer(target.dataset.num)
     }, () => {
-      const { roundScore, steps } = this.state;
-      if (roundScore === 10) {
-        const newScore = integer(steps) >= 5 ? integer(steps) * 1000 : integer(steps) * 100;
-        this.handleScore(newScore);
-        this.resetMatrix();
-      }
-      if (roundScore > 10) {
-        this.resetMatrix();
-      }
+      this.setSelected(vector).then(() => {
+        const { roundScore, steps } = this.state;
+        if (roundScore === 10) {
+          const newScore = (integer(steps) * integer(steps)) * 100;
+          this.handleScore(newScore);
+          this.message(`Nice. You scored ${newScore}!`);
+          this.convertSelected();
+          this.resetMatrix();
+        } else if (roundScore > 10) {
+          this.handleScore(NEG_SCORE);
+          this.message(`Ouch. You lost ${NEG_SCORE}!`);
+          this.convertSelected();
+          this.resetMatrix();
+        }
+      });
     });
   };
 
@@ -183,8 +190,8 @@ const mapDispachToProps = (dispatch) => {
   return bindActionCreators({
     updateCount,
     updateScore,
-    decrementRound,
-    randomizeEntries,
+    incrementRound,
+    setEntries,
     updateMessage,
     setHiScore
   }, dispatch);

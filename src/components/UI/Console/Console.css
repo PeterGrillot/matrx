@@ -1,0 +1,34 @@
+.Console {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: hidden;
+  opacity: 0.4;
+  transition: 400ms all ease-in-out;
+  padding-top: .4rem;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  z-index: var(--layer-neg);
+}
+
+.Console span{
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.Typist .Cursor {
+  display: inline-block;
+}
+.Typist .Cursor--blinking {
+  opacity: 1;
+  animation: blink 1s linear infinite;
+}
+@keyframes blink {
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
+}

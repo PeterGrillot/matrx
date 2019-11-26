@@ -1,30 +1,37 @@
+// @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Matrix from 'components/Matrix/index.js';
-import Scoreboard from 'components/Scoreboard/index.js';
-import Toolbar from 'components/Toolbar/index.js';
+import Matrix from 'components/Matrix/Matrix.component.js';
+import Scoreboard from 'components/Scoreboard/Scoreboard.component.js';
+import Toolbar from 'components/Toolbar/Toolbar.component.js';
 
 // Static
 import './static/style.css';
-import img from './static/morocco.png';
+// import 'normalize.css';
 
-class App extends Component {
+type Props = {
+  open: boolean
+}
+
+class App extends Component<Props> {
   render() {
     const { open } = this.props;
     return (
-      <main
-        className="App"
-        style={{ backgroundImage: `url(${img})` }}
-        active={open ? 'active' : null}
-      >
-        <header className="App-header">
-          <h1 className="App-title">Matrx</h1>
-        </header>
-        <Matrix />
-        <Scoreboard />
-        <Toolbar />
-      </main>
+      <React.Fragment>
+        <main
+          className="App"
+          active={open ? 'active' : null}
+        >
+          <header className="App-header">
+            <h1 className="App-title">Matrx</h1>
+          </header>
+          <Matrix />
+          <Scoreboard />
+          <Toolbar />
+        </main>
+        <div className="GradientBackground" />
+      </React.Fragment>
     );
   }
 }

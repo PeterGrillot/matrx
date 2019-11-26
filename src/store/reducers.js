@@ -2,8 +2,8 @@ import {
   UPDATE_COUNT,
   UPDATE_SCORE,
   TOGGLE_TOOLBAR,
-  DECREMENT_ROUND,
-  RANDOMIZE_ENTRIES,
+  INCREMENT_ROUND,
+  SET_ENTRIES,
   RESET_STORE,
   UPDATE_MATRIX,
   UPDATE_MESSAGE,
@@ -28,18 +28,18 @@ export default (state = DEFAULT_STATE, action) => {
       score: clamp(action.score, state.score)
     };
   }
-  case DECREMENT_ROUND: {
-    const newRound = !action.round ? DEFAULT_STATE.round : --state.round;
+  case INCREMENT_ROUND: {
+    const newRound = !action.round ? DEFAULT_STATE.round : ++state.round;
     return {
       ...state,
       round: newRound
     };
   }
-  case RANDOMIZE_ENTRIES: {
-    const randomArray = [...state.entries];
-    return Object.assign({}, state, {
-      entries: randomArray
-    });
+  case SET_ENTRIES: {
+    return {
+      ...state,
+      entries: action.entries
+    };
   }
   case RESET_STORE: {
     return DEFAULT_STATE;
@@ -47,7 +47,10 @@ export default (state = DEFAULT_STATE, action) => {
   case UPDATE_MESSAGE: {
     return {
       ...state,
-      message: action.message
+      message: [
+        ...state.message,
+        action.message
+      ]
     };
   }
   case UPDATE_MATRIX: {
