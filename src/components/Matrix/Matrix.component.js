@@ -139,7 +139,7 @@ class Matrix extends Component<Props, State> {
       this.setSelected(vector).then(() => {
         const { roundScore, steps } = this.state;
         if (roundScore === 10) {
-          const newScore = integer(steps) >= 5 ? integer(steps) * 1000 : integer(steps) * 100;
+          const newScore = (integer(steps) * integer(steps)) * 100;
           this.handleScore(newScore);
           this.message(`Nice. You scored ${newScore}!`);
           this.convertSelected();
