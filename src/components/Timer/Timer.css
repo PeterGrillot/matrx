@@ -1,0 +1,61 @@
+.Timer {
+  display: flex;
+  flex-direction: column;
+  background: rgba(230, 48, 4, 0.9);
+  position: absolute;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: var(--layer-1);
+}
+.Timer[data-active="false"] {
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+.Timer[data-active="true"] {
+  align-items: flex-start;
+  background: transparent;
+  padding: .4em;
+  width: 100vw;
+}
+.Timer__cluster {
+  display: flex;
+}
+.Timer__numeral {
+  font-size: 4rem;
+}
+.Timer[data-active="true"] .Timer__regress-bar{
+  height: 10px;
+  background: var(--green);
+  text-align: left;
+}
+.Timer .button__play{
+  font-size: 5rem;
+  padding: 0;
+  margin: 0;
+  height: 9rem;
+  display: flex;
+  align-items: center;
+  width: 9rem;
+  justify-content: center;
+  background: darkcyan;
+  border: none;
+  color: white;
+  border-radius: 100%;
+  margin-top: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.Timer .button__pause {
+  background: transparent;
+  color: white;
+  font-size: 4rem;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: 1;
+  height: 4rem;
+  font-family: Arial, Helvetica, sans-serif;
+}

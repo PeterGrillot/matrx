@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { Component } from 'react';
 import './Toolbar.css';
 
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ import {
   toogleToolbar
 } from 'store/actions';
 import { createMatrixSizes } from 'util/models';
-import { Select } from 'components/UI/Select/';
+import { Select } from 'components/UI/Select/Select.ui';
 
 const matrixSelectOptions = createMatrixSizes();
 
@@ -25,7 +25,7 @@ type State = {
   open: boolean
 }
 
-class Toolbar extends React.Component<Props, State> {
+class Toolbar extends Component<Props, State> {
   toggleToolbar = () => {
     this.props.toogleToolbar();
   }
@@ -50,8 +50,13 @@ class Toolbar extends React.Component<Props, State> {
         <button className="Toolbar__toggle" onClick={this.toggleToolbar}>{open ? '[X]' : '[?]'}</button>
         <section className="Toolbar__text">
           <h2>How To:</h2>
-          <p>Select numbers to get to 10 using the MOST moves. You can only select adjacent numbers. 100 pts per move until 5 then 1000 after. Three rounds per game.</p>
-          <h3>Change Size:</h3>
+          <p>Select numbers to get to 10 using the MOST moves. You can only select adjacent numbers. Each step is added until 10 is reached OR you go over 10.</p>
+          <h3>Scoring:</h3>
+          <p>Score = steps ^2 * 100; e.g; 6 + 4 = (2^2 * 100) => 400</p>
+          <p>If you go over 10 tou are epnalized 500 pts with NO time added.</p>
+          <h3>Timer:</h3>
+          <p>Starts at 60 second. Time is added as you score. Added time equals steps squared. e,g: (6)(4) => 2 steps ^2 => 4 seconds added!</p>
+          <h3>Setting:</h3>
           <label className="Toolbar__label" htmlFor="selectSize">
             {`Matrix Size [${this.props.size}]:`}
           </label>
@@ -77,4 +82,7 @@ const mapDispachToProps = (dispatch) => {
   return bindActionCreators({ updateMatrix, toogleToolbar }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispachToProps)(onClickOutside(Toolbar));
+export default connect(
+  mapStateToProps,
+  mapDispachToProps
+)(onClickOutside(Toolbar));

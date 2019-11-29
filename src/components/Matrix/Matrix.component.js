@@ -1,10 +1,14 @@
 // @flow
 import React, { Component } from 'react';
-import './Matrix.css';
+import { compose } from 'redux';
 import _ from 'lodash';
+
+import './Matrix.css';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
+import { TimerContext, withTimer } from 'components/Timer/Timer.context';
 
 import {
   updateCount,
@@ -19,13 +23,15 @@ import { integer, weightedRandom } from 'util/math';
 import { getCurrentVector } from 'util/vector';
 import { DEFAULT_STATE } from 'util/models';
 
-import { Button } from 'components/UI/Button/Button';
+import { Button } from 'components/UI/Button/Button.ui';
 
 const MARKED_CHAR = '!';
-const NEG_SCORE = -1000;
+const PENALTY_SCORE = -500;
 const buttonElements = () => [...document.querySelectorAll('.button')];
 
-type Props = {
+type Props =
+& TimerContext
+& {
   entries: Array<number>,
   matrix: Array<number>,
   size: number,
@@ -111,10 +117,8 @@ class Matrix extends Component<Props, State> {
   selectEntry = (event) => {
     const target = event.currentTarget;
     const vector = target.dataset.vector.split(',');
-    // enable certain buttons
     const enableArray = getCurrentVector(vector);
 
-    // handle button toggle
     this.setState({
       selectedArray: [...this.state.selectedArray, target.dataset.vector]
     }, () => {
@@ -138,17 +142,18 @@ class Matrix extends Component<Props, State> {
     }, () => {
       this.setSelected(vector).then(() => {
         const { roundScore, steps } = this.state;
-        if (roundScore === 10) {
+        if (roundScore >= 10) {
+          this.convertSelected();
+          this.resetMatrix();
+          if (roundScore > 10) {
+            this.handleScore(PENALTY_SCORE);
+            this.message(`[ouch] ${PENALTY_SCORE}!`);
+            return;
+          }
           const newScore = (integer(steps) * integer(steps)) * 100;
+          this.props.addTimer(integer(steps) * integer(steps));
           this.handleScore(newScore);
-          this.message(`Nice. You scored ${newScore}!`);
-          this.convertSelected();
-          this.resetMatrix();
-        } else if (roundScore > 10) {
-          this.handleScore(NEG_SCORE);
-          this.message(`Ouch. You lost ${NEG_SCORE}!`);
-          this.convertSelected();
-          this.resetMatrix();
+          this.message(`[nice] ${newScore}!`);
         }
       });
     });
@@ -197,4 +202,7 @@ const mapDispachToProps = (dispatch) => {
   }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispachToProps)(Matrix);
+export default compose(
+  withTimer,
+  connect(mapStateToProps, mapDispachToProps)
+)(Matrix);

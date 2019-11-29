@@ -15,6 +15,7 @@ export const DEFAULT_STATE = {
   count: 0,
   steps: 0,
   round: 0,
+  time: 1000,
   size: MATRIX_SETTINGS.min,
   message: [],
   open: false,

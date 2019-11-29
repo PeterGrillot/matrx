@@ -1,10 +1,12 @@
 .Scoreboard {
   display: flex;
   align-self: center;
-  flex-grow: 1;
   align-items: center;
   padding: 1rem;
   margin-bottom: 8vh;
+  height: 12vh;
+  position: relative;
+  z-index: var(--layer-2);
 }
 
 .Scoreboard__tile {

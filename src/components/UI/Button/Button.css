@@ -10,6 +10,7 @@
   transition: var(--transition);
   outline: none;
 }
+
 button::-moz-focusring,button::-moz-focus-inner{
   outline: none;
   border-style: 0;

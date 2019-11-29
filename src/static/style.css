@@ -70,7 +70,6 @@ body {
 
 .App {
   background: 0 0;
-  text-align: center;
   height: 100vh;
   transition: 600ms ease-out;
   position: relative;
@@ -78,6 +77,12 @@ body {
   display: flex;
   flex-flow: column;
   z-index: var(--layer-1);
+}
+
+.App__header{
+  text-align: center;
+  margin-top: 8rem;
+  height: 12rem;
 }
 
 .App[active] {

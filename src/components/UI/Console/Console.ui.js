@@ -1,12 +1,12 @@
 // @flow
-import * as React from 'react';
-import _ from 'lodash';
-import Typist from 'react-typist';
+import React from 'react';
+
+import Typist from 'components/UI/Typist/Typist.ui';
 
 import './Console.css';
 
 const MAX_LENGTH = 8;
-const USER_NAME = 'cnsle@Matrx~ $ ';
+const USER_NAME = 'consl@Matrx $~';
 
 type Props = {
   message: Array<string>,
@@ -24,7 +24,7 @@ export const Console = (props: Props) => {
         if (index === message.length - 1) {
           return (
             <span key={index}>
-              {USER_NAME}&nbsp;<Typist cursor={{ element: '▒' }} key={index}>{text}</Typist>
+              {USER_NAME}&nbsp;<Typist key={index}>{text}</Typist>
             </span>
           );
         }
