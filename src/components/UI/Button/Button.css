@@ -29,9 +29,3 @@ button::-moz-focusring,button::-moz-focus-inner{
   background: var(--button-gradient-inactive);
   cursor: not-allowed;
 }
-
-@for $i from 0 to 9 {
-  .button[data-num="$i"] {
-    color: var(--button-color-$i)
-   }
-}

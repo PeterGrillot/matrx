@@ -17,7 +17,7 @@ export const DEFAULT_STATE = {
   round: 0,
   time: 1000,
   size: MATRIX_SETTINGS.min,
-  message: [],
+  message: ['Press play to begin'],
   open: false,
   hiScore: localStorage.getItem('hiScore') || 0
 };

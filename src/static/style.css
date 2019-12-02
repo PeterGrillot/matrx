@@ -3,21 +3,27 @@
   --green:           #74fd93;
   --red:             #f16c6c;
   --red-transparent: #f16c6cee;
+  --yellow:          #f1ea62;
   --purple:          #9100ff;
   --white:           #F5F5F5;
   --slate:           #2c3e50;
   --gradient:        linear-gradient(45deg, #ffdddd, #ffa1e9);
 
-  --button-color-0: #e75656;
-  --button-color-1: #fffa98;
-  --button-color-2: #f1ea62;
-  --button-color-3: #36ece6;
+  /* Timer */
+  --danger: var(--red);
+  --warning: var(--yellow);
+
+  /* Buttons */
+  --button-color-9: #e75656;
+  --button-color-8: #f1ea62;
+  --button-color-7: #f1ea62;
+  --button-color-6: #f1ea62;
+  --button-color-5: #28e0da;
   --button-color-4: #28e0da;
-  --button-color-5: #64aee7;
-  --button-color-6: #2699f1;
-  --button-color-7: #3edb63;
-  --button-color-8: #11e943;
-  --button-color-9: #f53ec4;
+  --button-color-3: #28e0da;
+  --button-color-2: #3edb63;
+  --button-color-1: #3edb63;
+  --button-color-0: #3edb63;
   --button-gradient-active: linear-gradient(-45deg, #c16c6c, #5100ff);
   --button-gradient-inactive: #5100ff;
   --button-gradient-disabled: linear-gradient(-45deg, #3c0f57, #18175c);
@@ -82,11 +88,7 @@ body {
 .App__header{
   text-align: center;
   margin-top: 8rem;
-  height: 12rem;
-}
-
-.App[active] {
-  margin-left: calc( -1 * var(--toolbar-width));
+  height: 8rem;
 }
 
 h1 {

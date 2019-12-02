@@ -1,11 +1,22 @@
 # Matrx
 
-Select a Tile to begin, then select adjacent tiles to add them up to 10. The goal is to select the most amount of tiles to reach 10 (Count). [0] tiles are ideal as they don't increase your count, but are woth points. You have 3 Rounds. Up to 4 counts are worth 100pts each, 5 counts and on are worth 1000pts each count!
+## How To:
+
+Select numbers to get to 10 using the MOST moves. You can only select touching numbers (above, below, left, right). Each step is added until 10 is reached OR you go over 10.
+
+### Scoring:
+
+Score = steps squared; times 100. Example: (0)(6)(4) = (3 steps^2 * 100) => 900. If you go over 10 you are penalized 500 pts with 0 time added or removed.
+
+### Timer:
+
+Starts at 60 second. Time is added as you score. Added time equals steps times 4. e,g: (6)(4) => 2 steps * 4 => 8 seconds added! There is no maximum time.
+
 
 ## Scoring Examples
 
-- `[8][2] => 200pts` :(
-- `[0][0][3][4][3] => 5000pts!` :)
-- `[0][0][1][2][3][0][2][2] => 8000pts!` :D
+- `[8][2] => 400pts, 4 seconds added` :(
+- `[0][0][3][4][3] => 2500pts! 10 seconds added` :)
+- `[0][0][1][2][3][0][2][2] => 6400pts! 16 seconds added` :D
 
 [Live Demo!](https://petergrillot.github.io/matrx/)

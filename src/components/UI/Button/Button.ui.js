@@ -11,7 +11,8 @@ export const Button = (props) => {
       key={props.index}
       style={{
         flexBasis: `${100 / props.width}%`,
-        height: `${100 / props.height}%`
+        height: `${100 / props.height}%`,
+        color: `var(--button-color-${props.number})`
       }}
     >{props.label}</button>
   );

@@ -13,7 +13,7 @@
 
 .Toolbar[active]{
   right: 0;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .Toolbar__toggle {

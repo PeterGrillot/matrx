@@ -151,7 +151,7 @@ class Matrix extends Component<Props, State> {
             return;
           }
           const newScore = (integer(steps) * integer(steps)) * 100;
-          this.props.addTimer(integer(steps) * integer(steps));
+          this.props.addTimer(integer(steps) * 2);
           this.handleScore(newScore);
           this.message(`[nice] ${newScore}!`);
         }

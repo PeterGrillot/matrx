@@ -20,6 +20,7 @@ type Props =
 & TimerContext
 & {
   score: number,
+  message: Array<string>,
   updateScore: (score: number) => void,
   incrementRound: (toggle: boolean) => void,
   updateMessage: (message: string) => void,
@@ -32,6 +33,20 @@ class Timer extends Component<Props> {
       this.props.resetTimer();
       this.gameOver();
     }
+  }
+
+  renderColorByTime = () => {
+    if (this.props.timer < 20) {
+      return 'var(--danger)';
+    }
+    if (this.props.timer < 40) {
+      return 'var(--warning)';
+    }
+  }
+
+  pauseGame = () => {
+    this.props.updateMessage(`Paused: ${this.props.score}pts. ${secondsToMinutes(this.props.timer)} left`);
+    this.props.stopTimer();
   }
 
   gameOver = () => {
@@ -49,22 +64,25 @@ class Timer extends Component<Props> {
           <React.Fragment>
             <div
               className="Timer__regress-bar"
-              style={{ width: `${regressWidth}vw` }}
+              style={{
+                width: `${regressWidth}vw`,
+                background: this.renderColorByTime()
+              }}
             />
             <div className="Timer__cluster">
+              <button
+                className="button__pause"
+                onClick={this.pauseGame}
+              >||</button>
               <div className="Timer__numeral">
                 {secondsToMinutes(this.props.timer)}
               </div>
-              <button
-                className="button__pause"
-                onClick={this.props.stopTimer}
-              >&#9646;&#9646;</button>
             </div>
           </React.Fragment>
         ) : (
           <React.Fragment>
             <h1>Matrx</h1>
-            <Typist>Press Play to begin</Typist>
+            <Typist>{this.props.message[this.props.message.length - 1]}</Typist>
             <button
               className="button__play"
               onClick={this.props.startTimer}
@@ -78,7 +96,8 @@ class Timer extends Component<Props> {
 
 const mapStateToProps = (state) => {
   return {
-    score: state.score
+    score: state.score,
+    message: state.message
   };
 };
 const mapDispachToProps = (dispatch) => {
