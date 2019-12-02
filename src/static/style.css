@@ -14,16 +14,16 @@
   --warning: var(--yellow);
 
   /* Buttons */
-  --button-color-9: #e75656;
-  --button-color-8: #f1ea62;
-  --button-color-7: #f1ea62;
-  --button-color-6: #f1ea62;
-  --button-color-5: #28e0da;
-  --button-color-4: #28e0da;
-  --button-color-3: #28e0da;
-  --button-color-2: #3edb63;
-  --button-color-1: #3edb63;
-  --button-color-0: #3edb63;
+  --button-color-9: #f39d9d;
+  --button-color-8: #f39d9d;
+  --button-color-7: #faf6a2;
+  --button-color-6: #faf6a2;
+  --button-color-5: #a2faf7;
+  --button-color-4: #a2faf7;
+  --button-color-3: #a2faf7;
+  --button-color-2: #b8fcc8;
+  --button-color-1: #b8fcc8;
+  --button-color-0: #ff50a0;
   --button-gradient-active: linear-gradient(-45deg, #c16c6c, #5100ff);
   --button-gradient-inactive: #5100ff;
   --button-gradient-disabled: linear-gradient(-45deg, #3c0f57, #18175c);
