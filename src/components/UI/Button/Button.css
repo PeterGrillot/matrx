@@ -10,7 +10,9 @@
   transition: var(--transition);
   outline: none;
 }
-button:focus {
+button:focus,
+button:active,
+button:hover {
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
