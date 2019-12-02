@@ -10,7 +10,7 @@ Score = steps squared; times 100. Example: (0)(6)(4) = (3 steps^2 * 100) => 900.
 
 ### Timer:
 
-Starts at 60 second. Time is added as you score. Added time equals steps times 4. e,g: (6)(4) => 2 steps * 4 => 8 seconds added! There is no maximum time.
+Starts at 60 second. Time is added as you score. Added time equals steps times 2. e,g: (0)(6)(4) => 3 steps * 2 => 6 seconds added! There is no maximum time.
 
 
 ## Scoring Examples
