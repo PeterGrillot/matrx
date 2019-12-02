@@ -64,7 +64,9 @@ class Toolbar extends Component<Props, State> {
             className="Toolbar__select"
             name="selectSize"
             handleChange={this.handleChange}
-            options={matrixSelectOptions} />
+            options={matrixSelectOptions}
+          />
+          <p>Check out the source code on <a href="https://github.com/PeterGrillot/matrx">Github</a></p>
         </section>
       </article>
     );
