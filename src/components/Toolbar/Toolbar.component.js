@@ -51,11 +51,13 @@ class Toolbar extends Component<Props, State> {
         <section className="Toolbar__text">
           <h2>How To:</h2>
           <p>Select numbers to get to 10 using the MOST moves. You can only select touching numbers (above, below, left, right). Each step is added until 10 is reached OR you go over 10.</p>
+          <p>Start the game by pressing &#10914;</p>
+          <p>Pause the game by pressing &#10916;</p>
           <h3>Scoring:</h3>
           <p>Score = steps squared; times 100. Example: (0)(6)(4) = (3 steps^2 * 100) => 900</p>
           <p>If you go over 10 you are penalized 500 pts with 0 time added or removed.</p>
           <h3>Timer:</h3>
-          <p>Starts at 60 second. Time is added as you score. Added time equals steps times 2. e,g: (0)(6)(4) => 3 steps * 2 => 6 seconds added! There is no maximum time.</p>
+          <p>Starts at 60 seconds. Time is replenished as you score. Added time equals steps times 3. e,g: (0)(6)(4) => 3 steps * 3 => 9 seconds added! There is a maximum time of 60 seconds.</p>
           <h3>Setting:</h3>
           <label className="Toolbar__label" htmlFor="selectSize">
             {`Matrix Size [${this.props.size}]:`}

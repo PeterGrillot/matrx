@@ -11,6 +11,12 @@
   z-index: var(--layer-2);
 }
 
+.Toolbar[active] .Toolbar__toggle{
+  left: inherit;
+  right: 0;
+  border-radius: 0;
+  transform: rotate(0deg);
+}
 .Toolbar[active]{
   right: 0;
   overflow-y: auto;

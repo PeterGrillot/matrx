@@ -53,14 +53,13 @@
 .Timer .button__pause {
   background: darkcyan;
   color: white;
-  font-size: 12px;
+  font-size: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: .4rem 2rem 0 0;
   border: 0;
   border-radius: 100%;
-  line-height: 1;
   height: 4rem;
   width: 4rem;
   font-family: Arial, Helvetica, sans-serif;

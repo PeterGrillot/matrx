@@ -33,10 +33,10 @@ export class TimerProvider extends React.Component<Props, State> {
   intervalId: IntervalID
 
   startTimer = () => {
+    this.setState({ isEngaged: true });
     this.intervalId = setInterval(() => (
       this.setState((previousState) => ({
-        timer: --previousState.timer,
-        isEngaged: true
+        timer: --previousState.timer
       }
       ))
     ), 1000);
@@ -58,9 +58,14 @@ export class TimerProvider extends React.Component<Props, State> {
 
   addTimer = (addedTime: number) => {
     clearInterval(this.intervalId);
-    this.setState((previousState) => ({
-      timer: previousState.timer + addedTime
-    }), this.startTimer);
+    this.setState((previousState) => {
+      const newtime = previousState.timer + addedTime;
+      return ({
+        timer: newtime > 60 ? 60 : newtime
+      })
+      ;
+    },
+    this.startTimer);
   }
 
   render() {

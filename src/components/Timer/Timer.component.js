@@ -73,7 +73,7 @@ class Timer extends Component<Props> {
               <button
                 className="button__pause"
                 onClick={this.pauseGame}
-              >||</button>
+              >&#10916;</button>
               <div className="Timer__numeral">
                 {secondsToMinutes(this.props.timer)}
               </div>
@@ -86,7 +86,7 @@ class Timer extends Component<Props> {
             <button
               className="button__play"
               onClick={this.props.startTimer}
-            >></button>
+            >&#10914;</button>
           </React.Fragment>
         )}
       </div>
